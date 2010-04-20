@@ -21,6 +21,7 @@ Consider an example, in which you have view model like below
 and you want to display list of Employees in the FlexiGrid.
 
  * First download the MVC fluent JQuery control dll from the download section and add that to your project reference.
+ * Include the javascript and css files for [http://code.google.com/p/flexigrid/ FlexiGrid] to your view or master page.
  * In the MVC view, include the FlexiGrid control like below
 
 {{{
@@ -52,6 +53,8 @@ and you want to display list of Employees in the FlexiGrid.
             // Grid height
             .Height(200) %>
 }}}
+ 
+ * Create an POST action method called "Employees" (You could see the source code in the demo page listed below)
 
 [http://www.nowiamin.com/ Demo]
 
