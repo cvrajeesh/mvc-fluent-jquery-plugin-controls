@@ -29,6 +29,11 @@ namespace Demo.Controllers
             return View();
         }
 
+        public ActionResult LimitedOptions()
+        {
+            return View();
+        }
+
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Employees(FlexGridFetchOptions fetchOptions)
         {

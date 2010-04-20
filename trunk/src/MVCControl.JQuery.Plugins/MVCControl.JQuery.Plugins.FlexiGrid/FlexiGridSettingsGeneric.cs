@@ -1,7 +1,5 @@
 ﻿using System;
-using System.IO;
-using System.Text;
-using System.Web.UI;
+using MVCControl.JQuery.Plugins.Core;
 
 namespace MVCControl.JQuery.Plugins.FlexiGrid
 {
@@ -78,6 +76,11 @@ namespace MVCControl.JQuery.Plugins.FlexiGrid
         /// </summary>
         private int _height;
 
+        /// <summary>
+        /// Variable that holds the instance of FlexiGridRenderer.
+        /// </summary>
+        private IGridRenderer<FlexiGridSettings<T>> _renderer;
+
         #endregion
 
         #region Constructor
@@ -88,6 +91,7 @@ namespace MVCControl.JQuery.Plugins.FlexiGrid
         public FlexiGridSettings()
         {
             this._columns = new FlexiGridColumnCollection<T>();
+            this._renderer = new FlexiGridRenderer<T>();
         }
 
         #endregion
@@ -347,141 +351,7 @@ namespace MVCControl.JQuery.Plugins.FlexiGrid
         /// </returns>
         public override string ToString()
         {
-            return this.Render();
-        }
-
-        #endregion
-
-        #region Private Methods
-
-        /// <summary>
-        /// Renders the grid..
-        /// </summary>
-        /// <returns>Rendered grid in text fomat.</returns>
-        private string Render()
-        {
-            using (var sw = new StringWriter())
-            {
-                using (var htmlWriter = new HtmlTextWriter(sw))
-                {
-                    // Create a hidden table element
-                    htmlWriter.AddStyleAttribute(HtmlTextWriterStyle.Display, "none");
-                    htmlWriter.AddAttribute(HtmlTextWriterAttribute.Id, this.GridId);
-                    htmlWriter.RenderBeginTag(HtmlTextWriterTag.Table);
-                    htmlWriter.RenderEndTag();
-
-                    // Create the javascript tag.
-                    htmlWriter.AddAttribute(HtmlTextWriterAttribute.Type, @"text/javascript");
-                    htmlWriter.RenderBeginTag(HtmlTextWriterTag.Script);
-                    htmlWriter.Write(this.CreateTheJQueryMethodCall());
-                    htmlWriter.RenderEndTag();
-                }
-
-                return sw.ToString();
-            }
-        }
-
-        /// <summary>
-        /// Creates the JQuery method call.
-        /// </summary>
-        /// <returns>Formatted JQuery method call.</returns>
-        private string CreateTheJQueryMethodCall()
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendFormat(@"$(""#{0}"").flexigrid({{", this.GridId);
-            sb.AppendLine();
-            sb.AppendFormat("url:'{0}',", this.ActionUrl);
-            sb.AppendLine();
-            sb.AppendFormat("dataType:'{0}',", this.GridDataType.GetDescription());
-            sb.AppendLine();
-            sb.AppendLine("colModel:[");
-
-            int count = 0;
-            int totalCount = this.GridColumns.Count;
-            foreach (FlexiGridColumn<T> column in this.GridColumns)
-            {
-                count++;
-
-                sb.AppendFormat("{{ display: '{0}', name: '{1}', width: {2}, sortable: {3}, align: '{4}' }}"
-                                , column.ColumnSettings.ColumnTitle
-                                , column.FieldName
-                                , column.ColumnSettings.ColumnWidth
-                                , column.ColumnSettings.ColumnSortable.ToString().ToLower()
-                                , column.ColumnSettings.ColumnAlignment.GetDescription());
-
-                if (count < totalCount)
-                {
-                    sb.AppendLine(",");
-                }
-            }
-
-            sb.AppendLine();
-            sb.AppendLine("],");
-            sb.AppendLine("searchitems:[");
-
-            count = 0;
-            totalCount = this.GridColumns.Count;
-            foreach (FlexiGridColumn<T> column in this.GridColumns)
-            {
-                count++;
-                sb.AppendFormat("{{ display: '{0}', name: '{1}' }}", column.ColumnSettings.ColumnTitle, column.FieldName);
-
-                if (count < totalCount)
-                {
-                    sb.AppendLine(",");
-                }
-            }
-
-            sb.AppendLine();
-            sb.AppendLine("],");
-            sb.AppendFormat(@"sortname:""{0}"",", this.DefaultSortField);
-            sb.AppendLine();
-            sb.AppendFormat(@"sortorder:""{0}""", this.DefaultSortOrder.GetDescription());
-            sb.AppendLine();
-
-            if (this.EnablePager)
-            {
-                sb.AppendFormat(",{0}", Environment.NewLine);
-                sb.AppendFormat(@"usepager:{0}", this.EnablePager.ToString().ToLower());
-            }
-
-            if (!string.IsNullOrEmpty(this.GridTitle))
-            {
-                sb.AppendFormat(",{0}", Environment.NewLine);
-                sb.AppendFormat(@"title:'{0}'", this.GridTitle);
-            }
-
-            if (this.EnableRecordsPerPage)
-            {
-                sb.AppendFormat(",{0}", Environment.NewLine);
-                sb.AppendFormat(@"useRp:{0}", this.EnableRecordsPerPage.ToString().ToLower());
-                sb.AppendFormat(",{0}", Environment.NewLine);
-                sb.AppendFormat(@"rp:{0}", this.RecordsPerPage);
-            }
-
-            if (this.EnableTableToggleButton)
-            {
-                sb.AppendFormat(",{0}", Environment.NewLine);
-                sb.AppendFormat(@"showTableToggleBtn: {0}", this.EnableTableToggleButton.ToString().ToLower());
-            }
-
-            if (this.GridWidth > 0)
-            {
-                sb.AppendFormat(",{0}", Environment.NewLine);
-                sb.AppendFormat(@"width:{0}", this.GridWidth);
-            }
-
-            if (this.GridWidth > 0)
-            {
-                sb.AppendFormat(",{0}", Environment.NewLine);
-                sb.AppendFormat(@"height:{0}", this.GridHeight);
-                sb.AppendLine();
-            }
-
-            sb.AppendLine("}");
-            sb.AppendLine(");");
-            sb.AppendLine();
-            return sb.ToString();
+            return this._renderer.Render(this);
         }
 
         #endregion

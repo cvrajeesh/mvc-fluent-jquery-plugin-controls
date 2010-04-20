@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicQuery", "DynamicQuer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCControl.JQuery.Plugins.FlexiGrid", "MVCControl.JQuery.Plugins.FlexiGrid\MVCControl.JQuery.Plugins.FlexiGrid.csproj", "{AFB41FA8-3E74-4040-9422-3738CCE25CA2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCControl.JQuery.Plugins.Core", "MVCControl.JQuery.Plugins.Core\MVCControl.JQuery.Plugins.Core.csproj", "{FB675108-D485-40A9-932F-3FC56785305C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{AFB41FA8-3E74-4040-9422-3738CCE25CA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFB41FA8-3E74-4040-9422-3738CCE25CA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFB41FA8-3E74-4040-9422-3738CCE25CA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB675108-D485-40A9-932F-3FC56785305C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB675108-D485-40A9-932F-3FC56785305C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB675108-D485-40A9-932F-3FC56785305C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB675108-D485-40A9-932F-3FC56785305C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
