@@ -7,13 +7,19 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace MVCControl.JQuery.Plugins.FlexiGrid
+namespace MVCControl.JQuery.Plugins.Core
 {
     /// <summary>
-    /// Interface that needs to be implemented by all the FlexiGrid renderers.
-    /// TODO : Needs to move the rendering logic in the settings class to the corresponding renderes.
+    /// Interface that needs to be implemented by all the Grid renderers.
     /// </summary>
-    public interface IGridRenderer
+    /// <typeparam name="T">Type of the data that needs to be rendered.</typeparam>
+    public interface IGridRenderer<T> where T : class 
     {
+        /// <summary>
+        /// Renders the specified data.
+        /// </summary>
+        /// <param name="data">The data that needs to be rendered..</param>
+        /// <returns>Rendered output as string.</returns>
+        string Render(T data);
     }
 }

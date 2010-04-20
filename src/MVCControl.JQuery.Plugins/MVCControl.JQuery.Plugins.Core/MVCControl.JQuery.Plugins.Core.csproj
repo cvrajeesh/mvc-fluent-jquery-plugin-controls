@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{AFB41FA8-3E74-4040-9422-3738CCE25CA2}</ProjectGuid>
+    <ProjectGuid>{FB675108-D485-40A9-932F-3FC56785305C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MVCControl.JQuery.Plugins.FlexiGrid</RootNamespace>
-    <AssemblyName>MVCControl.JQuery.Plugins.FlexiGrid</AssemblyName>
+    <RootNamespace>MVCControl.JQuery.Plugins.Core</RootNamespace>
+    <AssemblyName>MVCControl.JQuery.Plugins.Core</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -18,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -35,33 +35,18 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Data" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DescriptionAttribute.cs" />
-    <Compile Include="Extensions.cs" />
-    <Compile Include="FlexGridFetchOptions.cs" />
-    <Compile Include="FlexiGridColumn.cs" />
-    <Compile Include="FlexiGridColumnCollection.cs" />
-    <Compile Include="FlexiGridColumnSettings.cs" />
-    <Compile Include="FlexiGridEnums.cs" />
-    <Compile Include="FlexiGridModelProperties.cs" />
-    <Compile Include="FlexiGridRenderer.cs" />
-    <Compile Include="FlexiGridSettings.cs" />
-    <Compile Include="FlexiGridSettingsGeneric.cs" />
-    <Compile Include="HtmlExtensions.cs" />
-    <Compile Include="Model\FlexGridData.cs" />
-    <Compile Include="Model\FlexGridRowData.cs" />
+    <Compile Include="IGridRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MVCControl.JQuery.Plugins.Core\MVCControl.JQuery.Plugins.Core.csproj">
-      <Project>{FB675108-D485-40A9-932F-3FC56785305C}</Project>
-      <Name>MVCControl.JQuery.Plugins.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
